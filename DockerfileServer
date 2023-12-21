@@ -1,0 +1,23 @@
+# Utiliza una imagen base que incluya Node.js y MongoDB
+FROM node:18
+
+# Clona el repositorio
+RUN git clone https://repo.fib.upc.edu/jordi.baranda/csgo-marketplace /app
+
+# Instala las dependencias en cada directorio
+WORKDIR /app
+
+RUN npm install --prefix Bend/Node+mongoDB
+RUN npm install --prefix Blockchain
+RUN npm install --prefix client
+
+EXPOSE 9999
+EXPOSE 3000
+EXPOSE 8081
+EXPOSE 8080
+
+# Concede permisos de ejecución al script
+RUN chmod +x /app/start.sh
+
+# Define el comando de inicio utilizando el script
+CMD ["/app/start.sh"]

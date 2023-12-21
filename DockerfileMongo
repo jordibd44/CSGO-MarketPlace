@@ -1,0 +1,14 @@
+# Usa la imagen oficial de MongoDB como base
+FROM mongo:latest
+
+# Configura el directorio de trabajo en el contenedor
+WORKDIR /usr/src/app
+
+# Copia los archivos de configuración personalizados, si los tienes
+# COPY ./path/to/your/mongod.conf /etc/mongod.conf
+
+# Expone el puerto 27017 (puerto predeterminado de MongoDB)
+EXPOSE 27017
+
+# Comando para iniciar el servicio mongod al ejecutar el contenedor
+CMD ["mongod"]

@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  server:
+    build:
+      context: ./
+      dockerfile: DockerfileServer
+    ports:
+      - "3000:3000"
+      - "9999:9999"
+    networks:
+      - internal
+      - external
+    depends_on:
+      - db
+
+  db:
+    build:
+      context: ./
+      dockerfile: DockerfileMongo
+    networks:
+      - internal
+    expose:
+      - "27017"
+
+networks:
+  internal:
+  external:
+    external:
+      name: public_network
